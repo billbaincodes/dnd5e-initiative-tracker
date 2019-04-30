@@ -16,35 +16,53 @@
   border: 1px solid black;
   transition: 1s;
   margin: 1rem;
+  padding: 0.5rem;
   overflow: hidden;
 }
 
 .character-card:hover {
   height: 15rem;
   width: 15rem;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .stat-block {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  align-content: flex-start;
   padding: 1rem;
-  width: 70%;
+  width: 90%;
 }
 
 .stat {
 
 }
 
-input {
-  text-align: center;
-  width: 100%;
-  font-size: 1rem;
-  border: none;
-  -webkit-highlight-color: none;
+.ability-mod {
+  font-size: .7rem;
 }
 
-label {
-  display:inline;
+.stat-input {
+width: 4rem;
+}
+
+input {
+  text-align: center;
+  font-size: 1rem;
+  border: none;
+  transition: 1s;
+  border-bottom: 1px solid white;
+}
+
+input:hover {
+  border-bottom: 1px solid rgb(170, 170, 170);
+}
+
+textarea {
+  border: 1px solid white;
+  transition: 1s;
+}
+textarea:hover {
+  border: 1px solid rgb(170, 170, 170);
 }
