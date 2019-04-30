@@ -47,9 +47,9 @@ const CharacterCard = ({
         onChange={event => nameSetter(event)}
         value={data.name}
       />
-      <span>HP:{data.hit_points}</span>
-      <span>AC:{data.armor_class}</span>
-      <span>Spell DC:{data.armor_class}</span>
+      <span>HP: {data.hit_points}</span>
+      <span>AC: {data.armor_class}</span>
+      <span>Spell DC: ???</span>
 
       <div className="stat-block">
         <span className="stat">

@@ -59,10 +59,25 @@ input:hover {
   border-bottom: 1px solid rgb(170, 170, 170);
 }
 
+input:focus { 
+  border-bottom: 1px solid rgb(0, 0, 0);
+  outline: none;
+}
+
+
+
 textarea {
   border: 1px solid white;
   transition: 1s;
 }
 textarea:hover {
   border: 1px solid rgb(170, 170, 170);
+}
+
+.hidden {
+  display: none;
+}
+
+.shown {
+  display: block;
 }

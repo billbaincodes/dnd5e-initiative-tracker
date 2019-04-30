@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CharacterCard from "./CharacterCard.js";
-import CharacterForm from "./CharacterForm.js"
+import CharacterForm from "./CharacterForm.js";
 
 class Tracker extends Component {
   state = {
@@ -33,7 +33,7 @@ class Tracker extends Component {
       },
       {
         id: 3,
-        name: "cloud",
+        name: "elxiphar",
         hit_points: 12,
         armor_class: 14,
         init: 10,
@@ -186,7 +186,8 @@ class Tracker extends Component {
         url: "http://www.dnd5eapi.co/api/monsters/277"
       }
     ],
-    selectedMonster: null
+    selectedMonster: null,
+    formToggle: false
   };
 
   componentDidMount() {
@@ -225,7 +226,10 @@ class Tracker extends Component {
     this.setState({ characterData: newList });
   };
 
-  addCharacter = () => {
+  addCharacter = (event, newCharacter) => {
+    event.preventDefault();
+    console.log(newCharacter);
+
     //Generate Id by incrementing highest current ID. Init at 0 if no characters present
     let lastId = 0;
     if (this.state.characterData.length) {
@@ -241,11 +245,19 @@ class Tracker extends Component {
 
     this.state.characterData.push({
       id: lastId + 1,
-      name: "New Character",
-      HP: 0,
-      init: 0
+      name: newCharacter.name,
+      hit_points: newCharacter.hit_points,
+      armor_class: newCharacter.armor_class,
+      init: newCharacter.init,
+      strength: newCharacter.strength,
+      dexterity: newCharacter.dexterity,
+      constitution: newCharacter.constitution,
+      intelligence: newCharacter.intelligence,
+      wisdom: newCharacter.wisdom,
+      charisma: newCharacter.charisma
     });
 
+    this.toggleForm();
     this.initSorter();
   };
 
@@ -259,15 +271,21 @@ class Tracker extends Component {
   };
 
   addMonster = () => {
-    console.log('monsta')
-  }
+    console.log("monsta");
+  };
+
+  toggleForm = () => {
+    this.setState({ formToggle: !this.state.formToggle });
+  };
 
   render() {
     return (
       <div>
         <span>Add Character!</span>
-        <button onClick={this.addCharacter}>+</button>
-        <CharacterForm />
+        <button onClick={this.toggleForm}>v</button>
+        {this.state.formToggle && (
+          <CharacterForm addCharacter={this.addCharacter} />
+        )}
         <br />
         <span>Add Monster!</span>
         <select>
