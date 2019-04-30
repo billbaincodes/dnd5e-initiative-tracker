@@ -5,9 +5,14 @@ class Tracker extends Component {
 
   state = {
     characterData: [
-      { id: 1, name: "lyia", HP: 1, init: 20 },
-      { id: 2, name: "neera", HP: 10, init: 5 },
-      { id: 3, name: "cloud", HP: 22, init: 10 }
+      { id: 1, name: "lyia", hit_points: 1, armor_class: 4, init: 20, "strength": 10,
+      "dexterity": 10,
+      "constitution": 10,
+      "intelligence": 10,
+      "wisdom": 14,
+      "charisma": 11, },
+      { id: 2, name: "neera", hit_points: 10, armor_class: 4, init: 5 },
+      { id: 3, name: "cloud", hit_points: 22, armor_class: 4, init: 10 }
     ],
     monsterList: [
       {
@@ -183,11 +188,13 @@ class Tracker extends Component {
 
   newCharacter = () => {
 
-    let lastId = this.state.characterData.map(character => {
-      return character.id
-    }).sort(function(a, b) {return a - b}).pop()
-
-
+    //Generate Id by incrementing highest current ID. Init at 0 if no characters present
+    let lastId = 0
+    if (this.state.characterData.length) {
+      lastId = this.state.characterData.map(character => {
+        return character.id
+      }).sort(function(a, b) {return a - b}).pop()
+    }
 
     this.state.characterData.push({
       id: lastId+1,
@@ -197,6 +204,13 @@ class Tracker extends Component {
     })
 
     this.initSorter()
+  }
+
+  //Removes character by filtering through characterData arr
+  removeCharacter = (event) => {
+    let characterId = parseInt(event.target.id)
+    let newList = this.state.characterData.filter(character => character.id !== characterId)
+    this.setState({characterData : newList})
   }
 
   render() {
@@ -218,6 +232,7 @@ class Tracker extends Component {
             nameSetter={this.nameSetter}
             initSetter={this.initSetter}
             initSorter={this.initSorter}
+            removeCharacter={this.removeCharacter}
             data={character}
           />
         ))}
