@@ -4,6 +4,7 @@
 
 .character-list {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .character-card {
@@ -21,5 +22,11 @@
 }
 
 input {
-  width: 2rem;
+  font-size: 1rem;
+  border: none;
+  -webkit-highlight-color: none;
+}
+
+label {
+  display:inline;
 }

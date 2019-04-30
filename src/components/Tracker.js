@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CharacterCard from "./CharacterCard.js";
 
 class Tracker extends Component {
+
   state = {
     characterData: [
       { id: 1, name: "lyia", HP: 1, init: 20 },
@@ -160,7 +161,6 @@ class Tracker extends Component {
   initSetter = event => {
     let newList = this.state.characterData.map(character => {
       if (character.id === parseInt(event.target.id)) {
-        console.log("found a bitch");
         character.init = event.target.value;
       }
       return character;
@@ -169,8 +169,34 @@ class Tracker extends Component {
     this.setState({ characterData: newList });
   };
 
-  newMonsterName = () => {
-    console.log()
+  nameSetter = event => {
+    let newList = this.state.characterData.map(character => {
+      if (character.id === parseInt(event.target.id)) {
+        console.log("found a bitch");
+        character.name = event.target.value;
+      }
+      return character;
+    });
+
+    this.setState({ characterData: newList });
+  }
+
+  newCharacter = () => {
+
+    let lastId = this.state.characterData.map(character => {
+      return character.id
+    }).sort(function(a, b) {return a - b}).pop()
+
+
+
+    this.state.characterData.push({
+      id: lastId+1,
+      name: "New Character",
+      HP: 0,
+      init: 0
+    })
+
+    this.initSorter()
   }
 
   render() {
@@ -184,11 +210,12 @@ class Tracker extends Component {
         })
       }
       </select>
-      <button>+</button>
+      <button onClick={this.newCharacter}>+</button>
       <div className="character-list">
         {this.state.characterData.map(character => (
           <CharacterCard
             key={character.id}
+            nameSetter={this.nameSetter}
             initSetter={this.initSetter}
             initSorter={this.initSorter}
             data={character}

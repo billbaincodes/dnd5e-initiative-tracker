@@ -1,14 +1,15 @@
 import React from 'react'
 
-const CharacterCard = ({ data, initSetter, initSorter }) => {
+const CharacterCard = ({ data, nameSetter, initSetter, initSorter }) => {
 
 
   return(
     <div className="character-card">
-      <h2>{data.name}</h2>
-      <h3>Initiative: <input id={data.id} onBlur={initSorter} onChange={(event) => initSetter(event)} value={data.init}></input></h3>
+      <input id={data.id} onChange={(event) => nameSetter(event)} value={data.name}></input>
       <h3>STR</h3>
       <h3>DEX</h3>
+      <label>Initiative</label>
+      <input id={data.id} onBlur={initSorter} onChange={(event) => initSetter(event)} value={data.init}></input>
     </div>
   )
 }
