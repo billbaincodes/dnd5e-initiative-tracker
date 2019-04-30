@@ -7,14 +7,19 @@
 }
 
 .character-card {
-  width: 6rem;
-  height: 6rem;
+  width: 8rem;
+  height: 8rem;
   border: 1px solid black;
   transition: 1s;
   margin: 1rem;
+  overflow: hidden;
 }
 
-.character-card:active {
+.character-card:hover {
   height: 14rem;
   width: 14rem;
+}
+
+input {
+  width: 2rem;
 }
