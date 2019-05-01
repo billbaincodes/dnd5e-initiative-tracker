@@ -9,7 +9,7 @@ const CharacterCard = ({
 }) => {
 
   let modFinder = (int) => {
-    let mod = 300
+    let mod = 0
     if (int === 1) {
       mod = <span className="ability-mod">&#40;-5&#41;</span>
     } else if (int > 1 && int < 4) {
@@ -38,11 +38,10 @@ const CharacterCard = ({
     return mod
   }
 
-
-
   return (
     <div className="character-card">
-      <input
+      <input 
+        className="character-name"
         id={data.id}
         onChange={event => nameSetter(event)}
         value={data.name}
@@ -54,7 +53,7 @@ const CharacterCard = ({
       <div className="stat-block">
         <span className="stat">
           <b>STR:</b> {data.strength}
-          {modFinder(20)}
+          {modFinder(data.strength)}
         </span>
         <span className="stat">
           <b>DEX:</b> {data.dexterity}
@@ -80,6 +79,9 @@ const CharacterCard = ({
       <div>
         <div>Conditions</div>
         <textarea />
+        <div>Resistances:</div>
+        <div>Vulnerabilites:</div>
+
       </div>
       <label>Initiative</label>
       <input

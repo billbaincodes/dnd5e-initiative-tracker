@@ -4,15 +4,15 @@ import StatDropDown from "./StatDropDown.js";
 class CharacterForm extends Component {
   state = {
     name: "",
-    hit_points: "",
-    armor_class: "",
-    init: "",
-    strength: "",
-    dexterity: "",
-    constitution: "",
-    intelligence: "",
-    wisdom: "",
-    charisma: ""
+    hit_points: 0,
+    armor_class: 0,
+    init: 0,
+    strength: 1,
+    dexterity: 1,
+    constitution: 1,
+    intelligence: 1,
+    wisdom: 1,
+    charisma: 1
   };
 
   nameSetter = (event) => {
