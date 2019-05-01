@@ -47,14 +47,13 @@ class Tracker extends Component {
     ],
     monsterList: [],
     monsterData: {},
-    selectedMonster: "Acolyte",
     formToggle: false,
     loaded: false
   };
 
   componentDidMount() {
     this.initSorter();
-    this.monsterFetcher(true);
+    this.monsterFetcher(true, null);
   }
 
   //Fetches monster information from API
@@ -165,7 +164,7 @@ class Tracker extends Component {
   };
 
   addMonster = () => {
-    console.log(this.state.monsterData)
+    console.log(this.state.monsterData);
   };
 
   toggleForm = () => {
@@ -182,15 +181,12 @@ class Tracker extends Component {
         )}
         <br />
         <span>Add Monster!</span>
-
-
-        <select onChange={event => this.selectMonster(event)}>
+        <select defaultValue="Choose a monster..." onChange={event => this.selectMonster(event)}>
+          <option disabled>Choose a monster...</option>
           {this.state.monsterList.map(monster => {
             return <option key={monster.name}> {monster.name}</option>;
           })}
         </select>
-
-
         <button onClick={this.addMonster}>+</button>
         <div className="character-list">
           {this.state.characterList.map(character => (
