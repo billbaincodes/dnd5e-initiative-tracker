@@ -6,36 +6,52 @@ class Tracker extends Component {
   state = {
     characterList: [
       {
-        id: 1,
-        name: "Elxiphar",
-        hit_points: 18,
-        armor_class: 14,
-        init: 20,
-        strength: 18,
-        dexterity: 14,
-        constitution: 14,
-        intelligence: 13,
-        wisdom: 12,
-        charisma: 3
+        "id": 1,
+        "name": "Elxipha",
+        "size": "Medium",
+        "type": "humanoid",
+        "subtype": "human",
+        "alignment": "Neutral",
+        "armor_class": 12,
+        "hit_points": 6,
+        "hit_dice": "2d8",
+        "speed": "30 ft.",
+        "strength": 10,
+        "dexterity": 15,
+        "constitution": 16,
+        "intelligence": 17,
+        "wisdom": 13,
+        "charisma": 11,
+        "damage_vulnerabilities": "",
+        "damage_resistances": "",
+        "damage_immunities": "",
+        "condition_immunities": "",
+        "senses": "passive Perception 12",
+        "languages": ["Common", "elvish"],
+        "challenge_rating": 0.25,
+        "special_abilities": [],
+        "url": ""
       },
       {
         id: 2,
         name: "Neera",
         hit_points: 19,
-        armor_class: 12,
-        init: 10,
+        armor_class: 13,
+        spell_save_dc: 0,
+        init: 0,
         strength: 9,
-        dexterity: 10,
-        constitution: 10,
-        intelligence: 10,
-        wisdom: 12,
-        charisma: 11
+        dexterity: 14,
+        constitution: 13,
+        intelligence: 13,
+        wisdom: 11,
+        charisma: 16
       },
       {
         id: 3,
         name: "Lyia",
         hit_points: 12,
         armor_class: 14,
+        spell_save_dc: 0,
         init: 10,
         strength: 18,
         dexterity: 17,
@@ -48,7 +64,8 @@ class Tracker extends Component {
     monsterList: [],
     monsterData: {},
     formToggle: false,
-    loaded: false
+    loaded: false,
+    idCounter: 4
   };
 
   componentDidMount() {
@@ -80,6 +97,7 @@ class Tracker extends Component {
     }
   };
 
+  //Sorts character array by initiative from highest to lowest
   initSorter = () => {
     let sortedList = this.state.characterList.sort(function(a, b) {
       return b.init - a.init;
@@ -88,6 +106,7 @@ class Tracker extends Component {
     this.setState({ characterList: sortedList });
   };
 
+  //Lets initiative be set from the characterCard after initial render
   initSetter = event => {
     let newList = this.state.characterList.map(character => {
       if (character.id === parseInt(event.target.id)) {
@@ -95,10 +114,10 @@ class Tracker extends Component {
       }
       return character;
     });
-
     this.setState({ characterList: newList });
   };
 
+  //Lets name be set from characterCard after initial render
   nameSetter = event => {
     let newList = this.state.characterList.map(character => {
       if (character.id === parseInt(event.target.id)) {
@@ -107,29 +126,16 @@ class Tracker extends Component {
       }
       return character;
     });
-
     this.setState({ characterList: newList });
   };
 
+  //Add a new character to the character array
   addCharacter = (event, newCharacter) => {
     event.preventDefault();
     console.log(newCharacter);
 
-    //Generate Id by incrementing highest current ID. Init at 0 if no characters present
-    let lastId = 0;
-    if (this.state.characterList.length) {
-      lastId = this.state.characterList
-        .map(character => {
-          return character.id;
-        })
-        .sort(function(a, b) {
-          return a - b;
-        })
-        .pop();
-    }
-
     this.state.characterList.push({
-      id: lastId + 1,
+      id: this.state.idCounter,
       name: newCharacter.name,
       hit_points: newCharacter.hit_points,
       armor_class: newCharacter.armor_class,
@@ -142,6 +148,7 @@ class Tracker extends Component {
       charisma: newCharacter.charisma
     });
 
+    this.setState({ idCounter : this.state.idCounter + 1})
     this.toggleForm();
     this.initSorter();
   };
@@ -155,16 +162,34 @@ class Tracker extends Component {
     this.setState({ characterList: newList });
   };
 
+  //Selects monster by filtering from list and fetches individual monster data
   selectMonster = event => {
     let monsterInfo = this.state.monsterList.filter(
       monster => monster.name === event.target.value
     )[0];
-
     this.monsterFetcher(false, monsterInfo.url);
   };
 
+  //Add monster to character array
   addMonster = () => {
-    console.log(this.state.monsterData);
+    let monster = this.state.monsterData
+
+    this.state.characterList.push({
+      id: this.state.idCounter,
+      name: monster.name,
+      hit_points: monster.hit_points,
+      armor_class: monster.armor_class,
+      init: 0,
+      strength: monster.strength,
+      dexterity: monster.dexterity,
+      constitution: monster.constitution,
+      intelligence: monster.intelligence,
+      wisdom: monster.wisdom,
+      charisma: monster.charisma
+    })
+
+    this.initSorter()
+    this.setState({ idCounter : this.state.idCounter + 1})
   };
 
   toggleForm = () => {
@@ -181,7 +206,7 @@ class Tracker extends Component {
         )}
         <br />
         <span>Add Monster!</span>
-        <select defaultValue="Choose a monster..." onChange={event => this.selectMonster(event)}>
+        <select onChange={event => this.selectMonster(event)} defaultValue="Choose a monster..." >
           <option disabled>Choose a monster...</option>
           {this.state.monsterList.map(monster => {
             return <option key={monster.name}> {monster.name}</option>;

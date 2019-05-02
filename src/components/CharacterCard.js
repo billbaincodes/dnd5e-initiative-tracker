@@ -48,7 +48,7 @@ const CharacterCard = ({
       />
       <span>HP: {data.hit_points}</span>
       <span>AC: {data.armor_class}</span>
-      <span>Spell DC: ???</span>
+      <span>Spell DC: {data.spell_save_dc}</span>
 
       <div className="stat-block">
         <span className="stat">
@@ -79,8 +79,12 @@ const CharacterCard = ({
       <div>
         <div>Conditions</div>
         <textarea />
+        <div>Immunities:</div>
+
+
         <div>Resistances:</div>
         <div>Vulnerabilites:</div>
+
 
       </div>
       <label>Initiative</label>
