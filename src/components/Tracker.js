@@ -6,59 +6,88 @@ class Tracker extends Component {
   state = {
     characterList: [
       {
-        "id": 1,
-        "name": "Elxipha",
-        "size": "Medium",
-        "type": "humanoid",
-        "subtype": "human",
-        "alignment": "Neutral",
-        "armor_class": 12,
-        "hit_points": 6,
-        "hit_dice": "2d8",
-        "speed": "30 ft.",
-        "strength": 10,
-        "dexterity": 15,
-        "constitution": 16,
-        "intelligence": 17,
-        "wisdom": 13,
-        "charisma": 11,
-        "damage_vulnerabilities": "",
-        "damage_resistances": "",
-        "damage_immunities": "",
-        "condition_immunities": "",
-        "senses": "passive Perception 12",
-        "languages": ["Common", "elvish"],
-        "challenge_rating": 0.25,
-        "special_abilities": [],
-        "url": ""
+        id: 1,
+        name: "Elxipha",
+        size: "Medium",
+        type: "humanoid",
+        subtype: "human",
+        alignment: "Neutral",
+        armor_class: 12,
+        hit_points: 6,
+        hit_dice: "2d8",
+        speed: "30 ft.",
+        strength: 10,
+        dexterity: 15,
+        constitution: 16,
+        intelligence: 17,
+        wisdom: 13,
+        charisma: 11,
+        damage_vulnerabilities: "",
+        damage_resistances: "",
+        damage_immunities: "",
+        condition_immunities: "",
+        senses: "passive Perception 12",
+        languages: ["Common", "elvish"],
+        challenge_rating: 0.25,
+        actions: [],
+        special_abilities: [],
+        url: ""
       },
       {
         id: 2,
         name: "Neera",
-        hit_points: 19,
-        armor_class: 13,
-        spell_save_dc: 0,
-        init: 0,
-        strength: 9,
-        dexterity: 14,
-        constitution: 13,
-        intelligence: 13,
-        wisdom: 11,
-        charisma: 16
+        size: "Medium",
+        type: "humanoid",
+        subtype: "human",
+        alignment: "Neutral",
+        armor_class: 12,
+        hit_points: 6,
+        hit_dice: "2d8",
+        speed: "30 ft.",
+        strength: 10,
+        dexterity: 15,
+        constitution: 16,
+        intelligence: 17,
+        wisdom: 13,
+        charisma: 11,
+        damage_vulnerabilities: "",
+        damage_resistances: "",
+        damage_immunities: "",
+        condition_immunities: "",
+        senses: "passive Perception 12",
+        languages: ["Common", "elvish"],
+        challenge_rating: 0.25,
+        actions: [],
+        special_abilities: [],
+        url: ""
       },
       {
         id: 3,
-        name: "Lyia",
-        hit_points: 12,
-        armor_class: 14,
-        spell_save_dc: 0,
-        init: 10,
-        strength: 18,
-        dexterity: 17,
-        constitution: 18,
-        intelligence: 19,
-        wisdom: 18,
-        charisma: 17
+        name: "Elxipha",
+        size: "Medium",
+        type: "humanoid",
+        subtype: "human",
+        alignment: "Neutral",
+        armor_class: 12,
+        hit_points: 6,
+        hit_dice: "2d8",
+        speed: "30 ft.",
+        strength: 10,
+        dexterity: 15,
+        constitution: 16,
+        intelligence: 17,
+        wisdom: 13,
+        charisma: 11,
+        damage_vulnerabilities: "",
+        damage_resistances: "",
+        damage_immunities: "",
+        condition_immunities: "",
+        senses: "passive Perception 12",
+        languages: ["Common", "elvish"],
+        challenge_rating: 0.25,
+        actions: [],
+        special_abilities: [],
+        url: ""
       }
     ],
     monsterList: [],
@@ -137,6 +166,12 @@ class Tracker extends Component {
     this.state.characterList.push({
       id: this.state.idCounter,
       name: newCharacter.name,
+      size: newCharacter.size,
+      type: newCharacter.type,
+      subtype: newCharacter.subtype,
+      alignment: newCharacter.alignment,
+      hit_dice: newCharacter.hit_dice,
+      speed: newCharacter.speed,
       hit_points: newCharacter.hit_points,
       armor_class: newCharacter.armor_class,
       init: newCharacter.init,
@@ -145,10 +180,19 @@ class Tracker extends Component {
       constitution: newCharacter.constitution,
       intelligence: newCharacter.intelligence,
       wisdom: newCharacter.wisdom,
-      charisma: newCharacter.charisma
+      charisma: newCharacter.charisma,
+      damage_vulnerabilities: newCharacter.damage_vulnerabilities,
+      damage_resistances: newCharacter.damage_resistances,
+      damage_immunities: newCharacter.damage_immunities,
+      condition_immunities: newCharacter.condition_immunities,
+      senses: newCharacter.senses,
+      languages: newCharacter.languages,
+      challenge_rating: newCharacter.challenge_rating,
+      special_abilities: newCharacter.special_abilities,
+      url: null
     });
 
-    this.setState({ idCounter : this.state.idCounter + 1})
+    this.setState({ idCounter: this.state.idCounter + 1 });
     this.toggleForm();
     this.initSorter();
   };
@@ -172,24 +216,39 @@ class Tracker extends Component {
 
   //Add monster to character array
   addMonster = () => {
-    let monster = this.state.monsterData
+    let monster = this.state.monsterData;
 
     this.state.characterList.push({
       id: this.state.idCounter,
       name: monster.name,
+      size: monster.size,
+      type: monster.type,
+      subtype: monster.subtype,
+      alignment: monster.alignment,
+      hit_dice: monster.hit_dice,
+      speed: monster.speed,
       hit_points: monster.hit_points,
       armor_class: monster.armor_class,
-      init: 0,
+      init: monster.init,
       strength: monster.strength,
       dexterity: monster.dexterity,
       constitution: monster.constitution,
       intelligence: monster.intelligence,
       wisdom: monster.wisdom,
-      charisma: monster.charisma
-    })
+      charisma: monster.charisma,
+      damage_vulnerabilities: monster.damage_vulnerabilities,
+      damage_resistances: monster.damage_resistances,
+      damage_immunities: monster.damage_immunities,
+      condition_immunities: monster.condition_immunities,
+      senses: monster.senses,
+      languages: monster.languages,
+      challenge_rating: monster.challenge_rating,
+      special_abilities: monster.special_abilities,
+      url: monster.url
+    });
 
-    this.initSorter()
-    this.setState({ idCounter : this.state.idCounter + 1})
+    this.initSorter();
+    this.setState({ idCounter: this.state.idCounter + 1 });
   };
 
   toggleForm = () => {
@@ -206,7 +265,10 @@ class Tracker extends Component {
         )}
         <br />
         <span>Add Monster!</span>
-        <select onChange={event => this.selectMonster(event)} defaultValue="Choose a monster..." >
+        <select
+          onChange={event => this.selectMonster(event)}
+          defaultValue="Choose a monster..."
+        >
           <option disabled>Choose a monster...</option>
           {this.state.monsterList.map(monster => {
             return <option key={monster.name}> {monster.name}</option>;
