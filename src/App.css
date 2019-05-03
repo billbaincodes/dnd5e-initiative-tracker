@@ -1,13 +1,13 @@
-.app {
-
-}
 
 .character-list {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
+  justify-self: center;
+  z-index:0;
 }
 
 .character-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,13 +18,14 @@
   margin: 1rem;
   padding: 0.5rem;
   overflow: hidden;
+  background-color: white;
 }
 
 .character-card:hover {
   height: 25rem;
   width: 14rem;
   overflow-y: scroll;
-  z-index: 1;
+  z-index:999
 }
 
 .character-name {
@@ -32,7 +33,7 @@
   font-size: 1.2rem;
 }
 
-.stat-block {
+.ability-block {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -41,16 +42,16 @@
   width: 90%;
 }
 
-.stat {
-
-}
-
 .ability-mod {
-  font-size: .7rem;
+  font-size: 0.7rem;
 }
 
 .stat-input {
-width: 4rem;
+  width: 4rem;
+}
+
+.character-info > div{
+  margin-top: .3rem;
 }
 
 input {
@@ -65,25 +66,16 @@ input:hover {
   border-bottom: 1px solid rgb(170, 170, 170);
 }
 
-input:focus { 
+input:focus {
   border-bottom: 1px solid rgb(0, 0, 0);
   outline: none;
 }
-
-
 
 textarea {
   border: 1px solid white;
   transition: 1s;
 }
+
 textarea:hover {
   border: 1px solid rgb(170, 170, 170);
-}
-
-.hidden {
-  display: none;
-}
-
-.shown {
-  display: block;
 }
