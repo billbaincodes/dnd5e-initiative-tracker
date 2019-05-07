@@ -98,8 +98,8 @@ const CharacterCard = ({
         <div>
           <b>Actions:</b>{" "}
           
-          {data.actions.length ? data.actions.map(action => {
-            return <Action data={action} />
+          {data.actions ? data.actions.map(action => {
+            return <Action key={action.name} data={action} />
           }) : "None"}
 
         </div>

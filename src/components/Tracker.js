@@ -243,6 +243,7 @@ class Tracker extends Component {
       senses: monster.senses,
       languages: monster.languages,
       challenge_rating: monster.challenge_rating,
+      actions: monster.actions,
       special_abilities: monster.special_abilities,
       url: monster.url
     });

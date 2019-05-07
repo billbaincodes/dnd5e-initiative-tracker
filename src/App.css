@@ -23,7 +23,7 @@
 
 .character-card:hover {
   height: 25rem;
-  width: 14rem;
+  width: 15rem;
   overflow-y: scroll;
   z-index:999
 }
@@ -78,4 +78,10 @@ textarea {
 
 textarea:hover {
   border: 1px solid rgb(170, 170, 170);
+}
+
+.action {
+  border: 1px solid black;
+  padding: 0.2rem;
+  margin-top: 0.2rem;
 }
