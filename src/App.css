@@ -1,7 +1,7 @@
 
 .character-list {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row initial;
   justify-self: center;
   z-index:0;
 }
@@ -22,7 +22,7 @@
 }
 
 .character-card:hover {
-  height: 25rem;
+  height: 10rem;
   width: 15rem;
   overflow-y: scroll;
   z-index:999

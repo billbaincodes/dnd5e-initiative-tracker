@@ -256,6 +256,23 @@ class Tracker extends Component {
     this.setState({ formToggle: !this.state.formToggle });
   };
 
+  renderCharacters = () => {
+    let counter = 0
+
+    this.state.characterList.map(character => (
+      <CharacterCard
+        key={character.id}
+        nameSetter={this.nameSetter}
+        initSetter={this.initSetter}
+        initSorter={this.initSorter}
+        removeCharacter={this.removeCharacter}
+        data={character}
+      />
+    ))
+    
+  }
+
+
   render() {
     return (
       <div>
@@ -276,6 +293,7 @@ class Tracker extends Component {
           })}
         </select>
         <button onClick={this.addMonster}>+</button>
+
         <div className="character-list">
           {this.state.characterList.map(character => (
             <CharacterCard
