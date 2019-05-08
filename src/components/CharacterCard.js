@@ -1,5 +1,6 @@
 import React from "react";
 import Action from "./Action.js"
+import SpecialAbility from "./SpecialAbility.js"
 
 const CharacterCard = ({
   data,
@@ -8,9 +9,6 @@ const CharacterCard = ({
   initSorter,
   removeCharacter
 }) => {
-  let foo = () => {
-    console.log(data.damage_immunities);
-  };
 
   let modFinder = int => {
     let mod = 0;
@@ -85,7 +83,7 @@ const CharacterCard = ({
           Conditions
         </div>
         <textarea />
-        <div onClick={foo}>
+        <div>
           <b>Immunities:</b> <span>{data.damage_immunities || "None"}</span>
         </div>
         <div>
@@ -103,6 +101,16 @@ const CharacterCard = ({
           }) : "None"}
 
         </div>
+        <div>
+          <b>Special Abilities:</b>{" "}
+          
+          {data.actions ? data.special_abilities.map(action => {
+            return <SpecialAbility key={action.name} data={action} />
+          }) : "None"}
+
+        </div>
+
+        
       </div>
       <label>Initiative</label>
       <input

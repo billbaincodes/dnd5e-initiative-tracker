@@ -31,7 +31,8 @@ class Tracker extends Component {
         challenge_rating: 0.25,
         actions: [],
         special_abilities: [],
-        url: ""
+        url: "",
+        init: 0
       },
       {
         id: 2,
@@ -59,7 +60,8 @@ class Tracker extends Component {
         challenge_rating: 0.25,
         actions: [],
         special_abilities: [],
-        url: ""
+        url: "",
+        init: 0
       },
       {
         id: 3,
@@ -87,7 +89,8 @@ class Tracker extends Component {
         challenge_rating: 0.25,
         actions: [],
         special_abilities: [],
-        url: ""
+        url: "",
+        init: 0
       }
     ],
     monsterList: [],
@@ -257,6 +260,7 @@ class Tracker extends Component {
   };
 
   renderCharacters = () => {
+
     let counter = 0
 
     this.state.characterList.map(character => (
@@ -269,7 +273,7 @@ class Tracker extends Component {
         data={character}
       />
     ))
-    
+
   }
 
 
