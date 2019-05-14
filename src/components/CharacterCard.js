@@ -1,15 +1,16 @@
 import React from "react";
-import Action from "./Action.js"
-import SpecialAbility from "./SpecialAbility.js"
+import Action from "./Action.js";
+import SpecialAbility from "./SpecialAbility.js";
 
 const CharacterCard = ({
   data,
   nameSetter,
   initSetter,
   initSorter,
-  removeCharacter
+  hpSetter,
+  removeCharacter,
+  characterList
 }) => {
-
   let modFinder = int => {
     let mod = 0;
     if (int === 1) {
@@ -43,12 +44,14 @@ const CharacterCard = ({
   return (
     <div className="character-card">
       <input
-        className="character-name"
+        className="character-name hidden-input"
         id={data.id}
-        onChange={event => nameSetter(event)}
+        onChange={event => nameSetter(event, characterList)}
         value={data.name}
       />
-      <span>HP: {data.hit_points}</span>
+      <span>
+        HP: <input className="hp-input hidden-input" id={data.id} onChange={event => hpSetter(event)} value={data.hit_points} />
+      </span>
       <span>AC: {data.armor_class}</span>
       <span>Spell DC: {data.spell_save_dc}</span>
 
@@ -79,9 +82,7 @@ const CharacterCard = ({
         </span>
       </div>
       <div className="character-info">
-        <div>
-          Conditions
-        </div>
+        <div>Conditions</div>
         <textarea />
         <div>
           <b>Immunities:</b> <span>{data.damage_immunities || "None"}</span>
@@ -95,25 +96,24 @@ const CharacterCard = ({
         </div>
         <div>
           <b>Actions:</b>{" "}
-          
-          {data.actions ? data.actions.map(action => {
-            return <Action key={action.name} data={action} />
-          }) : "None"}
-
+          {data.actions
+            ? data.actions.map(action => {
+                return <Action key={action.name} data={action} />;
+              })
+            : "None"}
         </div>
         <div>
           <b>Special Abilities:</b>{" "}
-          
-          {data.actions ? data.special_abilities.map(action => {
-            return <SpecialAbility key={action.name} data={action} />
-          }) : "None"}
-
+          {data.actions
+            ? data.special_abilities.map(action => {
+                return <SpecialAbility key={action.name} data={action} />;
+              })
+            : "None"}
         </div>
-
-        
       </div>
       <label>Initiative</label>
       <input
+        className="hidden-input"
         id={data.id}
         onBlur={initSorter}
         onChange={event => initSetter(event)}

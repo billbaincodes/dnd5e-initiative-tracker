@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 import CharacterCard from "./CharacterCard.js";
 import CharacterForm from "./CharacterForm.js";
+import setters from "./Setters.js";
 
 class Tracker extends Component {
   state = {
     characterList: [
       {
         id: 1,
-        name: "Elxipha",
+        name: "Lyia",
         size: "Medium",
         type: "humanoid",
         subtype: "human",
         alignment: "Neutral",
-        armor_class: 12,
-        hit_points: 6,
+        armor_class: 16,
+        hit_points: 17,
         hit_dice: "2d8",
         speed: "30 ft.",
         strength: 10,
@@ -41,8 +42,8 @@ class Tracker extends Component {
         type: "humanoid",
         subtype: "human",
         alignment: "Neutral",
-        armor_class: 12,
-        hit_points: 6,
+        armor_class: 13,
+        hit_points: 19,
         hit_dice: "2d8",
         speed: "30 ft.",
         strength: 10,
@@ -93,6 +94,7 @@ class Tracker extends Component {
         init: 0
       }
     ],
+    fullMonsterList: [],
     monsterList: [],
     monsterData: {},
     formToggle: false,
@@ -114,7 +116,7 @@ class Tracker extends Component {
           return response.json();
         })
         .then(json => {
-          this.setState({ monsterList: json.results });
+          this.setState({ monsterList: json.results, fullMonsterList: json.results });
           console.log(this.state.monsterList);
         });
     } else {
@@ -150,11 +152,23 @@ class Tracker extends Component {
   };
 
   //Lets name be set from characterCard after initial render
-  nameSetter = event => {
+  nameSetter = (event, list) => {
     let newList = this.state.characterList.map(character => {
       if (character.id === parseInt(event.target.id)) {
         console.log("found a bitch");
         character.name = event.target.value;
+      }
+      return character;
+    });
+    this.setState({ characterList: newList });
+  };
+
+  //Lets name be set from characterCard after initial render
+  hpSetter = (event, list) => {
+    let newList = this.state.characterList.map(character => {
+      if (character.id === parseInt(event.target.id)) {
+        console.log("found a bitch");
+        character.hit_points = event.target.value;
       }
       return character;
     });
@@ -217,6 +231,12 @@ class Tracker extends Component {
     this.monsterFetcher(false, monsterInfo.url);
   };
 
+  searchMonster = event => {
+    let searchVal = event.target.value.toLowerCase()
+    let filteredList = this.state.fullMonsterList.filter(monster =>  monster.name.toLowerCase().includes(searchVal))
+    this.setState({monsterList : filteredList})
+  }
+
   //Add monster to character array
   addMonster = () => {
     let monster = this.state.monsterData;
@@ -250,7 +270,6 @@ class Tracker extends Component {
       special_abilities: monster.special_abilities,
       url: monster.url
     });
-
     this.initSorter();
     this.setState({ idCounter: this.state.idCounter + 1 });
   };
@@ -258,24 +277,6 @@ class Tracker extends Component {
   toggleForm = () => {
     this.setState({ formToggle: !this.state.formToggle });
   };
-
-  renderCharacters = () => {
-
-    let counter = 0
-
-    this.state.characterList.map(character => (
-      <CharacterCard
-        key={character.id}
-        nameSetter={this.nameSetter}
-        initSetter={this.initSetter}
-        initSorter={this.initSorter}
-        removeCharacter={this.removeCharacter}
-        data={character}
-      />
-    ))
-
-  }
-
 
   render() {
     return (
@@ -287,6 +288,7 @@ class Tracker extends Component {
         )}
         <br />
         <span>Add Monster!</span>
+        <input name="search" autocomplete="off" placeholder="Search by name..." onChange={this.searchMonster} type="text"/>
         <select
           onChange={event => this.selectMonster(event)}
           defaultValue="Choose a monster..."
@@ -304,9 +306,11 @@ class Tracker extends Component {
               key={character.id}
               nameSetter={this.nameSetter}
               initSetter={this.initSetter}
+              hpSetter={this.hpSetter}
               initSorter={this.initSorter}
               removeCharacter={this.removeCharacter}
               data={character}
+              characterList={this.state.characterList}
             />
           ))}
         </div>

@@ -58,7 +58,7 @@
   font-size: .9rem;
 }
 
-input {
+.hidden-input {
   text-align: center;
   font-size: 1rem;
   border: none;
@@ -66,11 +66,11 @@ input {
   border-bottom: 1px solid white;
 }
 
-input:hover {
+.hidden-input:hover {
   border-bottom: 1px solid rgb(170, 170, 170);
 }
 
-input:focus {
+.hidden-input:focus {
   border-bottom: 1px solid rgb(0, 0, 0);
   outline: none;
 }
@@ -88,4 +88,8 @@ textarea:hover {
   border: 1px solid black;
   padding: 0.2rem;
   margin-top: 0.2rem;
+}
+
+.hp-input {
+  width: 2rem;
 }
