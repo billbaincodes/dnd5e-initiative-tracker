@@ -42,7 +42,7 @@ const CharacterCard = ({
   };
 
   return (
-    <div className="character-card">
+    <div className={data.active ? "character-card active-character" : "character-card"}>
       <input
         className="character-name hidden-input"
         id={data.id}
@@ -104,7 +104,7 @@ const CharacterCard = ({
         </div>
         <div>
           <b>Special Abilities:</b>{" "}
-          {data.actions
+          {data.special_abilities
             ? data.special_abilities.map(action => {
                 return <SpecialAbility key={action.name} data={action} />;
               })

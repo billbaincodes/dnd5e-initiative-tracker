@@ -33,7 +33,8 @@ class Tracker extends Component {
         actions: [],
         special_abilities: [],
         url: "",
-        init: 0
+        init: 0,
+        active: true
       },
       {
         id: 2,
@@ -62,7 +63,8 @@ class Tracker extends Component {
         actions: [],
         special_abilities: [],
         url: "",
-        init: 0
+        init: 0,
+        active: false
       },
       {
         id: 3,
@@ -91,7 +93,8 @@ class Tracker extends Component {
         actions: [],
         special_abilities: [],
         url: "",
-        init: 0
+        init: 0,
+        active: false
       }
     ],
     fullMonsterList: [],
@@ -116,7 +119,10 @@ class Tracker extends Component {
           return response.json();
         })
         .then(json => {
-          this.setState({ monsterList: json.results, fullMonsterList: json.results });
+          this.setState({
+            monsterList: json.results,
+            fullMonsterList: json.results
+          });
           console.log(this.state.monsterList);
         });
     } else {
@@ -232,10 +238,12 @@ class Tracker extends Component {
   };
 
   searchMonster = event => {
-    let searchVal = event.target.value.toLowerCase()
-    let filteredList = this.state.fullMonsterList.filter(monster =>  monster.name.toLowerCase().includes(searchVal))
-    this.setState({monsterList : filteredList})
-  }
+    let searchVal = event.target.value.toLowerCase();
+    let filteredList = this.state.fullMonsterList.filter(monster =>
+      monster.name.toLowerCase().includes(searchVal)
+    );
+    this.setState({ monsterList: filteredList });
+  };
 
   //Add monster to character array
   addMonster = () => {
@@ -278,9 +286,32 @@ class Tracker extends Component {
     this.setState({ formToggle: !this.state.formToggle });
   };
 
+  nextTurn = () => {
+
+  let indexA = null
+  let list = this.state.characterList.map((character, index) => {
+    if (character.active === true) {
+      indexA = index
+    }
+    return character
+  })
+
+  list[indexA].active = false
+
+  if (list[indexA + 1] === undefined ) {
+    list[0].active = true
+  } else {
+    list[indexA + 1].active = true
+  }
+
+  this.setState({characterList: list})
+  console.log(indexA, list)
+  };
+
   render() {
     return (
       <div>
+        <button onClick={this.nextTurn}>Next Turn</button>
         <span>Add Character!</span>
         <button onClick={this.toggleForm}>v</button>
         {this.state.formToggle && (
@@ -288,7 +319,13 @@ class Tracker extends Component {
         )}
         <br />
         <span>Add Monster!</span>
-        <input name="search" autocomplete="off" placeholder="Search by name..." onChange={this.searchMonster} type="text"/>
+        <input
+          name="search"
+          autocomplete="off"
+          placeholder="Search by name..."
+          onChange={this.searchMonster}
+          type="text"
+        />
         <select
           onChange={event => this.selectMonster(event)}
           defaultValue="Choose a monster..."

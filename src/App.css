@@ -2,7 +2,6 @@
 .character-list {
   display: flex;
   flex-flow: row wrap;
-  justify-self: center;
   z-index:0;
 }
 
@@ -92,4 +91,8 @@ textarea:hover {
 
 .hp-input {
   width: 2rem;
+}
+
+.active-character {
+  border: .2rem solid black;
 }
