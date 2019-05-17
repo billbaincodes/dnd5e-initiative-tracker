@@ -321,7 +321,7 @@ class Tracker extends Component {
         <span>Add Monster!</span>
         <input
           name="search"
-          autocomplete="off"
+          autoComplete="off"
           placeholder="Search by name..."
           onChange={this.searchMonster}
           type="text"

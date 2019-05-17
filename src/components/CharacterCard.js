@@ -42,7 +42,9 @@ const CharacterCard = ({
   };
 
   return (
-    <div className={data.active ? "character-card active-character" : "character-card"}>
+    <div className={data.active ? "character-card active-character" : "character-card"}
+        onMouseLeave={initSorter}
+          >
       <input
         className="character-name hidden-input"
         id={data.id}
@@ -115,7 +117,6 @@ const CharacterCard = ({
       <input
         className="hidden-input"
         id={data.id}
-        onBlur={initSorter}
         onChange={event => initSetter(event)}
         value={data.init}
       />

@@ -40,7 +40,7 @@ class CharacterForm extends Component {
       <form>
         <div>
           <label>Name</label>
-          <input name="name" value={this.state.name} onChange={this.nameSetter} />
+          <input name="name" autoComplete="off" value={this.state.name} onChange={this.nameSetter} />
         </div>
         <div>
           <label>HP</label>
