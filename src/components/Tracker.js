@@ -288,24 +288,24 @@ class Tracker extends Component {
 
   nextTurn = () => {
 
-  let indexA = null
+  let activeIndex = null
   let list = this.state.characterList.map((character, index) => {
     if (character.active === true) {
-      indexA = index
+      activeIndex = index
     }
     return character
   })
 
-  list[indexA].active = false
+  list[activeIndex].active = false
 
-  if (list[indexA + 1] === undefined ) {
+  if (list[activeIndex + 1] === undefined ) {
     list[0].active = true
   } else {
-    list[indexA + 1].active = true
+    list[activeIndex + 1].active = true
   }
 
   this.setState({characterList: list})
-  console.log(indexA, list)
+  console.log(activeIndex, list)
   };
 
   render() {
