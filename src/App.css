@@ -12,8 +12,8 @@
   align-items: center;
   width: 10rem;
   height: 5rem;
-  border: 1px solid black;
-  transition: 1s;
+  border: 1px solid rgb(121, 121, 121);
+  transition: .7s;
   margin: 1rem;
   padding: 0.5rem;
   overflow: hidden;
@@ -94,5 +94,5 @@ textarea:hover {
 }
 
 .active-character {
-  border: .2rem solid green;
+  border: .2rem solid rgb(0, 0, 0);
 }
