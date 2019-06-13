@@ -55,7 +55,7 @@ const CharacterCard = ({
         HP: <input className="hp-input hidden-input" id={data.id} onChange={event => hpSetter(event)} value={data.hit_points} />
       </span>
       <span>AC: {data.armor_class}</span>
-      <span>Spell DC: {data.spell_save_dc}</span>
+      <span>Spell Save DC: {data.spell_save_dc}</span>
 
       <div className="ability-block">
         <span className="ability">
@@ -113,7 +113,7 @@ const CharacterCard = ({
             : "None"}
         </div>
       </div>
-      <label>Initiative</label>
+      <label>Initiative: </label>
       <input
         className="hidden-input"
         id={data.id}
