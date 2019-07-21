@@ -28,8 +28,6 @@ class CharacterForm extends Component {
     challenge_rating: null,
     special_abilities: null,
     url: null
-
-
   };
 
   nameSetter = (event) => {

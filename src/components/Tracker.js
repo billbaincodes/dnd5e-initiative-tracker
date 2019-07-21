@@ -103,9 +103,22 @@ class Tracker extends Component {
   //Removes character by filtering through characterList arr
   removeCharacter = event => {
     let characterId = parseInt(event.target.id);
+
+    // make next char active before deletion
+    this.state.characterList.forEach(character => {
+      if (character.id === characterId) {
+        if (character.active) {
+          this.nextTurn()
+        }
+      }
+    })
+
     let newList = this.state.characterList.filter(
       character => character.id !== characterId
     );
+
+
+
     this.setState({ characterList: newList });
   };
 
