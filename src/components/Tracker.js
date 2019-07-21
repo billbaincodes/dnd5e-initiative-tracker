@@ -93,37 +93,8 @@ class Tracker extends Component {
   //Add a new character to the character array
   addCharacter = (event, newCharacter) => {
     event.preventDefault();
-    console.log(newCharacter);
-
-    this.state.characterList.push({
-      id: this.state.idCounter,
-      name: newCharacter.name,
-      size: newCharacter.size,
-      type: newCharacter.type,
-      subtype: newCharacter.subtype,
-      alignment: newCharacter.alignment,
-      hit_dice: newCharacter.hit_dice,
-      speed: newCharacter.speed,
-      hit_points: newCharacter.hit_points,
-      armor_class: newCharacter.armor_class,
-      init: newCharacter.init,
-      strength: newCharacter.strength,
-      dexterity: newCharacter.dexterity,
-      constitution: newCharacter.constitution,
-      intelligence: newCharacter.intelligence,
-      wisdom: newCharacter.wisdom,
-      charisma: newCharacter.charisma,
-      damage_vulnerabilities: newCharacter.damage_vulnerabilities,
-      damage_resistances: newCharacter.damage_resistances,
-      damage_immunities: newCharacter.damage_immunities,
-      condition_immunities: newCharacter.condition_immunities,
-      senses: newCharacter.senses,
-      languages: newCharacter.languages,
-      challenge_rating: newCharacter.challenge_rating,
-      special_abilities: newCharacter.special_abilities,
-      url: null
-    });
-
+    newCharacter.id = this.state.idCounter
+    this.state.characterList.push(newCharacter);
     this.setState({ idCounter: this.state.idCounter + 1 });
     this.toggleForm();
     this.initSorter();

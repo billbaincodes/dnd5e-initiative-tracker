@@ -4,15 +4,32 @@ import StatDropDown from "./StatDropDown.js";
 class CharacterForm extends Component {
   state = {
     name: "",
+    size: "medium",
+    type: "human",
+    subtype: "man",
+    alignment: null,
+    hit_dice: null,
+    speed: "30ft",
     hit_points: 0,
     armor_class: 0,
     init: 0,
-    strength: 1,
-    dexterity: 1,
-    constitution: 1,
-    intelligence: 1,
-    wisdom: 1,
-    charisma: 1
+    strength: 0,
+    dexterity: 0,
+    constitution: 0,
+    intelligence: 0,
+    wisdom: 0,
+    charisma: 0,
+    damage_vulnerabilities: null,
+    damage_resistances: null,
+    damage_immunities: null,
+    condition_immunities: null,
+    senses: null,
+    languages: null,
+    challenge_rating: null,
+    special_abilities: null,
+    url: null
+
+
   };
 
   nameSetter = (event) => {
