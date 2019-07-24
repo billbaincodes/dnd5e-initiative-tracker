@@ -30,10 +30,21 @@ class CharGen extends Component {
     }
     return statNums
   }
+
+  nameGen = () => {
+    fetch('https://uinames.com/api/')
+    .then(response => {
+      return response.json();
+    }).then(result => {
+      return `my name is ${result.name} ${result.surname}`;
+    })
+    
+  }
   
   componentDidMount(){
     let stats = this.genStats("strong")
     console.log(stats)
+    this.nameGen()
   }
 
   render(){
