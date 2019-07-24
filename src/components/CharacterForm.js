@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import StatDropDown from "./StatDropDown.js";
+import CharGen from './CharGen.js'
 
 class CharacterForm extends Component {
   state = {
@@ -27,7 +28,7 @@ class CharacterForm extends Component {
     languages: null,
     challenge_rating: null,
     special_abilities: null,
-    url: null
+    url: null,
   };
 
   nameSetter = (event) => {
@@ -50,9 +51,27 @@ class CharacterForm extends Component {
     this.setState({[stat] : event.target.value})
   }
 
+  genRandomCharacter = (char) => {
+    let { str, dex, con, wis, int, cha, hp, ac, init } = char.stats
+    let { name } = char
+    this.setState({ 
+      name: 'tony',
+      hit_points: 1,
+      armor_class: 1,
+      init: 1,
+      strength: 1,
+      dexterity: 1,
+      constitution: 1,
+      intelligence: 1,
+      wisdom: 1,
+      charisma: 1,
+    })
+  }
+
   render() {
     return (
       <form>
+        <CharGen genRando={this.genRandomCharacter} />
         <div>
           <label>Name</label>
           <input name="name" autoComplete="off" value={this.state.name} onChange={this.nameSetter} />
