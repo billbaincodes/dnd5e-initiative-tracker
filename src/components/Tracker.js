@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Header from "./Header.js"
 import CharacterCard from "./CharacterCard.js";
 import CharacterForm from "./CharacterForm.js";
 import * as seedData from './CharacterSeed.json';
@@ -204,6 +205,7 @@ class Tracker extends Component {
   render() {
     return (
       <div>
+      <Header />
         <button onClick={this.nextTurn}>Next Turn</button>
         <span>Add Character!</span>
         <button onClick={this.toggleForm}>v</button>

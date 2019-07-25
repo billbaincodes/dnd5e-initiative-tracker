@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import StatDropDown from "./StatDropDown.js";
 import CharGen from './CharGen.js'
 
 class CharacterForm extends Component {
@@ -55,22 +54,23 @@ class CharacterForm extends Component {
     let { str, dex, con, wis, int, cha, hp, ac, init } = char.stats
     let { name } = char
     this.setState({ 
-      name: 'tony',
-      hit_points: 1,
-      armor_class: 1,
-      init: 1,
-      strength: 1,
-      dexterity: 1,
-      constitution: 1,
-      intelligence: 1,
-      wisdom: 1,
-      charisma: 1,
+      name: name,
+      hit_points: hp,
+      armor_class: ac,
+      init: init,
+      strength: str,
+      dexterity: dex,
+      constitution: con,
+      intelligence: int,
+      wisdom: wis,
+      charisma: cha,
     })
   }
 
+
   render() {
     return (
-      <form>
+      <form className="character-form">
         <CharGen genRando={this.genRandomCharacter} />
         <div>
           <label>Name</label>
@@ -80,23 +80,23 @@ class CharacterForm extends Component {
           <label>HP</label>
           <input onChange={this.hpSetter} value={this.state.hit_points} name="hit_points" type="number" min="1" max="100" />
           <label>AC</label>
-          <input onChange={this.acSetter} value={this.state.armor_class} name="armor_class" type="number" min="1" max="100" />
+          <input onChange={this.acSetter} value={this.state.armor_class} name="armor_class" type="number" min="1" max="20" />
           <label>Init</label>
           <input onChange={this.initSetter} value={this.state.init} type="number" min="1" max="50" />
         </div>
         <div className="stat-input">
           <label>STR</label>
-          <StatDropDown statSetter={this.statSetter} stat="strength" />
+          <input onChange={(event) => this.statSetter(event, 'strength')} value={this.state.strength} type="number" min="1" max="25" />
           <label>DEX</label>
-          <StatDropDown statSetter={this.statSetter} stat="dexterity" />
+          <input onChange={(event) => this.statSetter(event, 'dexterity')} value={this.state.dexterity} type="number" min="1" max="25" />
           <label>CON</label>
-          <StatDropDown statSetter={this.statSetter} stat="constitution" />
+          <input onChange={(event) => this.statSetter(event, 'constitution')} value={this.state.constitution} type="number" min="1" max="25" />
           <label>INT</label>
-          <StatDropDown statSetter={this.statSetter} stat="intelligence" />
+          <input onChange={(event) => this.statSetter(event, 'intelligence')} value={this.state.intelligence} type="number" min="1" max="25" />
           <label>WIS</label>
-          <StatDropDown statSetter={this.statSetter} stat="wisdom" />
+          <input onChange={(event) => this.statSetter(event, 'wisdom')} value={this.state.wisdom} type="number" min="1" max="25" />
           <label>CHA</label>
-          <StatDropDown statSetter={this.statSetter} stat="charisma" />
+          <input onChange={(event) => this.statSetter(event, 'charisma')} value={this.state.charisma} type="number" min="1" max="25" />
         </div>
         <button onClick={(event) => this.props.addCharacter(event, this.state)}>add your character!</button>
       </form>

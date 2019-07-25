@@ -1,12 +1,6 @@
 import React, { Component } from 'react'
 
 class CharGen extends Component {
-  constructor(props){
-    super(props)
-  }
-  super(props){
-    props = this.props
-  }
   // Thanks Mozilla
   getRandomInt = (min, max) => {
     min = Math.ceil(min);
@@ -36,7 +30,7 @@ class CharGen extends Component {
         hpMin = 35
         hpMax = 50
         acMin = 16
-        acMax = 21
+        acMax = 20
         break
         // no default
     }
@@ -48,29 +42,29 @@ class CharGen extends Component {
       statNums[i] = this.getRandomInt(statMin, statMax)
     }
     let [str, dex, con, wis, int, cha] = statNums
-    console.log({ str, dex, con, wis, int, cha, hp, ac, init })
+    // console.log({ str, dex, con, wis, int, cha, hp, ac, init })
     return { str, dex, con, wis, int, cha, hp, ac, init }
   }
 
-  nameGen = () => {
-    fetch('https://uinames.com/api/')
-    .then(response => {
+  nameGen = async () => {
+    let fullName = await fetch('https://uinames.com/api/').then(response => {
       return response.json();
-    }).then(result => {
-      console.log(`my name is ${result.name} ${result.surname}`);
-      return `${result.name} ${result.surname}`;
     })
+    .then(result => {
+      return `${result.name} ${result.surname}`
+    })
+    return fullName
   }
 
   charPasser = async (event) => {
     event.preventDefault()
     let randomChar = {
-      name: null,
+      name: 'greg',
       stats: null,
     }
     randomChar.name = await this.nameGen()
-    randomChar.stats = await this.genStats()
-    console.log('rando', randomChar)
+    randomChar.stats = this.genStats("med")
+    console.log(randomChar)
     this.props.genRando(randomChar)
   }
   

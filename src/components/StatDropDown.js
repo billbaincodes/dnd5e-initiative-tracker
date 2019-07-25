@@ -1,6 +1,6 @@
 import React from 'react'
 
-const StatDropDown = ({ statSetter, stat }) => {
+const StatDropDown = ({ statSetter, stat, val }) => {
   return(
     <select onChange={(event) => statSetter(event, stat)}>
       <option>1</option>
