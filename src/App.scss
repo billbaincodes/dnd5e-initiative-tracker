@@ -2,7 +2,7 @@
 .character-list {
   display: flex;
   flex-flow: row wrap;
-  z-index:0;
+  // z-index:0;
 }
 
 .character-card {
@@ -10,8 +10,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 10rem;
-  height: 5rem;
+  width: 14rem;
+  height: 10rem;
   border: 1px solid rgb(121, 121, 121);
   transition: .7s;
   margin: 1rem;
@@ -21,10 +21,10 @@
 }
 
 .character-card:hover {
-  height: 25rem;
-  width: 16rem;
+  // height: 25rem;
+  // width: 16rem;
   overflow-y: scroll;
-  z-index:999
+  // z-index:999
 }
 
 .character-name {
@@ -46,7 +46,7 @@
 }
 
 .stat-input {
-  width: 4rem;
+  display: flex;
 }
 
 .character-info > div{
