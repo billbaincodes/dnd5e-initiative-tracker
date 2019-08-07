@@ -12,7 +12,7 @@
   align-items: center;
   width: 14rem;
   height: 10rem;
-  border: 1px solid rgb(121, 121, 121);
+  border: 1px solid rgb(0, 173, 38);
   transition: .7s;
   margin: 1rem;
   padding: 0.5rem;
@@ -21,8 +21,8 @@
 }
 
 .character-card:hover {
-  // height: 25rem;
-  // width: 16rem;
+  height: 25rem;
+  width: 20rem;
   overflow-y: scroll;
   // z-index:999
 }

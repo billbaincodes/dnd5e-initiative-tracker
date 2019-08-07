@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 
 class CharGen extends Component {
+
+  state = {
+    difficulty: "weak"
+  }
+
+  difficultySetter = (event) => {
+    this.setState({ difficulty : event.target.value })
+  }
+
   // Thanks Mozilla
   getRandomInt = (min, max) => {
     min = Math.ceil(min);
@@ -18,7 +27,7 @@ class CharGen extends Component {
         acMin = 10
         acMax = 14
         break
-      case "med" :
+      case "normal" :
         [statMin, statMax] = [7, 13]
         hpMin = 20
         hpMax = 30
@@ -63,7 +72,7 @@ class CharGen extends Component {
       stats: null,
     }
     randomChar.name = await this.nameGen()
-    randomChar.stats = this.genStats("med")
+    randomChar.stats = this.genStats(this.state.difficulty)
     console.log(randomChar)
     this.props.genRando(randomChar)
   }
@@ -75,7 +84,14 @@ class CharGen extends Component {
 
   render(){
   return(
-    <button onClick={(event) => this.charPasser(event)}>Gen Random Char</button>
+    <div>
+      <button onClick={(event) => this.charPasser(event)}>Generate Random Char</button>
+      <select onChange={(event) => this.difficultySetter(event)} value={this.state.difficulty}>
+        <option value="weak">weak</option>
+        <option value="normal">normal</option>
+        <option value="strong">difficult</option>
+      </select>
+    </div>
   )
   }
 }
