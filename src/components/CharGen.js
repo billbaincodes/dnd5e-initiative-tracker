@@ -61,6 +61,9 @@ class CharGen extends Component {
     })
     .then(result => {
       return `${result.name} ${result.surname}`
+    }).catch(err => {
+      console.log('err', err)
+      return 'API Down'
     })
     return fullName
   }
