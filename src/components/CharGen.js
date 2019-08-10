@@ -55,17 +55,28 @@ class CharGen extends Component {
     return { str, dex, con, wis, int, cha, hp, ac, init }
   }
 
-  nameGen = async () => {
-    let fullName = await fetch('https://uinames.com/api/').then(response => {
-      return response.json();
-    })
-    .then(result => {
-      return `${result.name} ${result.surname}`
-    }).catch(err => {
-      console.log('err', err)
-      return 'API Down'
-    })
-    return fullName
+  nameGen =  () => {
+    let first = [
+      'Dirk',
+      'Bishop',
+      'Roland',
+      'Samara',
+      'Lily',
+      'Daphne'
+    ]
+    
+    let last = [
+      'Tucket',
+      'Sexton',
+      'Potter',
+      'Abbot',
+      'the Doombringer',
+    ]
+    
+    let fName = first[parseInt(Math.random()*first.length)]
+    let lName = last[parseInt(Math.random()*last.length)]
+  
+    return `${fName} ${lName}`
   }
 
   charPasser = async (event) => {
