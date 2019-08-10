@@ -95,6 +95,10 @@ class Tracker extends Component {
   addCharacter = (event, newCharacter) => {
     event.preventDefault();
     newCharacter.id = this.state.idCounter
+    if(!this.state.characterList.length) {
+      newCharacter.active = true
+    }
+    console.log(newCharacter)
     this.state.characterList.push(newCharacter);
     this.setState({ idCounter: this.state.idCounter + 1 });
     this.toggleForm();
@@ -181,32 +185,35 @@ class Tracker extends Component {
   };
 
   nextTurn = () => {
-
-  let activeIndex = null
+  if (!this.state.characterList.length) {
+    return alert('The battlefield is  e m p t y')
+  }
+  let activeIndex
   let list = this.state.characterList.map((character, index) => {
     if (character.active === true) {
       activeIndex = index
     }
     return character
   })
-
   list[activeIndex].active = false
-
   if (list[activeIndex + 1] === undefined ) {
     list[0].active = true
   } else {
     list[activeIndex + 1].active = true
   }
-
   this.setState({characterList: list})
-  console.log(activeIndex, list)
   };
+
+  clearList = () => {
+    this.setState({characterList: []})
+  }
 
   render() {
     return (
       <div>
       <Header />
         <button onClick={this.nextTurn}>Next Turn</button>
+        <button onClick={this.clearList}>Clear List</button>
         <span>Add Character!</span>
         <button onClick={this.toggleForm}>v</button>
         {this.state.formToggle && (
