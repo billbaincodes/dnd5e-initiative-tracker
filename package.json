@@ -13,7 +13,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "surge": "surge /Users/williambain/playground/Projects/DnD/initiative-tracker/build rollinitiative.surge.sh"
   },
   "eslintConfig": {
     "extends": "react-app"
