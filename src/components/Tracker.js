@@ -23,7 +23,7 @@ class Tracker extends Component {
   //Fetches monster information from API
   //Boolean to fetch one or all monsters, url for individual monster fetch
   monsterFetcher = (all, url) => {
-    if (all === true) {
+    if (all) {
       fetch("http://www.dnd5eapi.co/api/monsters")
         .then(response => {
           return response.json();
