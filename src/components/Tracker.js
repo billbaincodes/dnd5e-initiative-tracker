@@ -23,6 +23,7 @@ class Tracker extends Component {
   //Fetches monster information from API
   //Boolean to fetch one or all monsters, url for individual monster fetch
   monsterFetcher = (all, url) => {
+    console.log({ url })
     if (all) {
       fetch("http://www.dnd5eapi.co/api/monsters")
         .then(response => {
@@ -33,10 +34,9 @@ class Tracker extends Component {
             monsterList: json.results,
             fullMonsterList: json.results
           });
-          console.log(this.state.monsterList);
         });
     } else {
-      fetch(url)
+      fetch(`http://www.dnd5eapi.co${url}`)
         .then(response => {
           return response.json();
         })
@@ -52,7 +52,6 @@ class Tracker extends Component {
     let sortedList = this.state.characterList.sort(function(a, b) {
       return b.init - a.init;
     });
-    console.log(sortedList);
     this.setState({ characterList: sortedList });
   };
 
@@ -98,7 +97,6 @@ class Tracker extends Component {
     if(!this.state.characterList.length) {
       newCharacter.active = true
     }
-    console.log(newCharacter)
     this.state.characterList.push(newCharacter);
     this.setState({ idCounter: this.state.idCounter + 1 });
     this.toggleForm();
@@ -146,6 +144,8 @@ class Tracker extends Component {
   //Add monster to character array
   addMonster = () => {
     let monster = this.state.monsterData;
+
+    console.log({ monster });
 
     this.state.characterList.push({
       id: this.state.idCounter,
